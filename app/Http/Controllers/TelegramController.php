@@ -119,16 +119,16 @@ class TelegramController extends Controller
             BotTelegram::make($token)
                 ->setupMember()
                 ->setupCommands()
-                ->setupSpecificCommandsToMenu([
-                    [
-                        'command' => 'plans',
-                        'description' => 'All plans available'
-                    ],
-                    [
-                        'command' => 'status',
-                        'description' => 'Check your subscribe status'
-                    ]
-                ], ['en'])
+                // ->setupSpecificCommandsToMenu([
+                //     [
+                //         'command' => 'plans',
+                //         'description' => 'All plans available'
+                //     ],
+                //     [
+                //         'command' => 'status',
+                //         'description' => 'Check your subscribe status'
+                //     ]
+                // ], ['en'])
                 ->setupSpecificCommandsToMenu([
                     [
                         'command' => 'planos',

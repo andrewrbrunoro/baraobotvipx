@@ -130,13 +130,13 @@ class BotErrorController extends Controller
                 ->set(BotResource::getWebhookUrl($token));
 
             // Configura os comandos em inglês
-            $botTelegram->manageCommand()
-                ->setCommands([
-                    HelpCommand::class,
-                    StatusCommand::class,
-                    ProductListCommand::class,
-                ], 'en')
-                ->toMenu();
+            // $botTelegram->manageCommand()
+            //     ->setCommands([
+            //         HelpCommand::class,
+            //         StatusCommand::class,
+            //         ProductListCommand::class,
+            //     ], 'en')
+            //     ->toMenu();
 
             // Configura os comandos em português
             $botTelegram->manageCommand()
