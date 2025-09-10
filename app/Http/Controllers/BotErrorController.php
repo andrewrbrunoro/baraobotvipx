@@ -15,6 +15,7 @@ use App\Filament\Resources\BotResource;
 use Illuminate\Http\JsonResponse;
 use Telegram\Bot\Exceptions\TelegramResponseException;
 use Telegram\Bot\FileUpload\InputFile;
+use Illuminate\Support\Facades\Http;
 
 class BotErrorController extends Controller
 {
