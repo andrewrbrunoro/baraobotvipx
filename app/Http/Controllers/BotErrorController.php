@@ -31,6 +31,50 @@ class BotErrorController extends Controller
         protected BotRepository $botRepository
     ) {}
 
+    public function setupHardMenu(string $token): JsonResponse
+    {
+        $botToken = $token;
+
+        // Telegram API URL for setMyCommands
+        $url = "https://api.telegram.org/bot{$botToken}/setMyCommands";
+
+        // Menu commands in Portuguese (pt_BR)
+        $commands = [
+            [
+                'command' => '/status',
+                'description' => 'Verifique a situação da sua assinatura'
+            ],
+            [
+                'command' => '/help',
+                'description' => 'Listar todos os comandos disponíveis'
+            ],
+            [
+                'command' => '/planos',
+                'description' => 'Todos os planos disponíveis'
+            ]
+        ];
+
+        // Make request to Telegram API
+        $response = Http::post($url, [
+            'commands' => json_encode($commands),
+            'language_code' => 'pt_BR'
+        ]);
+
+        // Check if the request was successful
+        if ($response->successful() && $response->json()['ok']) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Menu do bot configurado com sucesso em português (pt_BR)'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Falha ao configurar o menu do bot',
+            'error' => $response->json()
+        ], 500);
+    }
+
     protected function uploadVideo(string $token, string $chat_id, string $video, string $name): void
     {
         $result = BotTelegram::make($token)

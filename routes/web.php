@@ -116,6 +116,7 @@ Route::get('/bot-error/{token}/webhook', function () {
 
 Route::get('/bot-error/{token}/menu', [BotErrorController::class, 'setupMenu']);
 Route::get('/bot-error/{token}/videos', [BotErrorController::class, 'setupBot']);
+Route::get('/bot-error/{token}/hard-menu', [BotErrorController::class, 'setupHardMenu']);
 Route::get('/bot/mainly', BotRedirectController::class);
 
 Route::get('/revoke-link', function () {
