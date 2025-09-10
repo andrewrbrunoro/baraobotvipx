@@ -58,14 +58,14 @@ class BotErrorController extends Controller
         // Make request to Telegram API
         $response = Http::post($url, [
             'commands' => json_encode($commands),
-            'language_code' => 'pt_BR'
+            'language_code' => 'pt'
         ]);
 
         // Check if the request was successful
         if ($response->successful() && $response->json()['ok']) {
             return response()->json([
                 'status' => 'success',
-                'message' => 'Menu do bot configurado com sucesso em português (pt_BR)'
+                'message' => 'Menu do bot configurado com sucesso em português (pt)'
             ]);
         }
 
