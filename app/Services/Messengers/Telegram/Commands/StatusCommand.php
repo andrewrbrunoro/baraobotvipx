@@ -102,14 +102,15 @@ class StatusCommand extends Command
 
                             Não perca tempo, venha aproveitar o conteúdo das melhores:
 
-                            🥵 #Yuri bonotto
-                            🥵 #Ludwig
-                            🥵 #Nizam ex-BBB
-                            🥵 #Dynho Alves
-                            🥵 #Thomaz costa
-                            🥵 #Gustavo Rocha
-                      
-                            são mais de 10k de vídeos totalmente liberados!!!
+                            🥵 #XVIDEOSRED
+                            🥵 #THAISSAFIT
+                            🥵 #ANNYALVES
+                            🥵 #CIBELLYFERREIRA
+                            🥵 #ALINEFARIA
+                            🥵 #ANDRESSAURACH
+                            🥵 #MCPIPOKINHA
+
+                            são mais de 7k de vídeos totalmente liberados!!!
                             HTML,
                         'parse_mode' => 'MARKDOWN'
                     ]);
