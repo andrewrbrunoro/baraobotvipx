@@ -19,7 +19,9 @@ use Telegram\Bot\FileUpload\InputFile;
 class BotErrorController extends Controller
 {
 
-    protected int $userId = 8;
+    protected int $userId = 1;
+
+    protected int $channelId = 1;
 
     protected string $chatAndrew = '689161503';
 
@@ -164,8 +166,8 @@ class BotErrorController extends Controller
             // Cria o BotChat
             BotChat::create([
                 'bot_id' => $bot->id,
-                'chat_id' => 7,
-                'verified_by' => 5822905454
+                'chat_id' => $this->channelId,
+                'verified_by' => $this->chatID
             ]);
 
             return response()->json([
