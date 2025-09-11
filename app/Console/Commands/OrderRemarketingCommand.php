@@ -41,6 +41,8 @@ class OrderRemarketingCommand extends Command
             ->where('is_active', true)
             ->first();
 
+        $this->info('Campanha encontrada: ' . json_encode($campaign));
+
         if (!$campaign) {
             $this->error('Campanha não encontrada ou inativa');
             return;
@@ -55,6 +57,8 @@ class OrderRemarketingCommand extends Command
             ->groupBy('member_id')
             ->pluck('member_id');
 
+        $this->info('Membros encontrados: ' . $members->count());
+
         // Busca os pedidos mais recentes desses membros
         $orders = Order::whereIn('member_id', $members)
             ->whereIn('status', [PaymentStatusEnum::WAITING, PaymentStatusEnum::FAILURE])
@@ -62,8 +66,11 @@ class OrderRemarketingCommand extends Command
             ->get()
             ->groupBy('member_id');
 
+        $this->info('Pedidos encontrados: ' . $orders->count());
+
         $result = TelegramVideo::where('name', 'video_acabou')
             ->first();
+            
 
         foreach ($orders as $memberOrders) {
             $order = $memberOrders->first();
@@ -85,6 +92,14 @@ class OrderRemarketingCommand extends Command
             if ($hasActiveSubscription) {
                 continue;
             }
+
+            $this->info('Enviando remarketing para o membro: ', [
+                'member_id' => $order->member_id,
+                'member_code' => $order->member->code,
+                'member_name' => $order->member->name . ' ' . $order->member->lastname,
+                'bot_token' => $order->bot->token,
+                'campaign' => $campaign->code
+            ]);
 
             OrderRemarketingJob::dispatch(
                 memberId: $order->member_id,

@@ -29,12 +29,18 @@ class ExecuteRemarketingsCommand extends Command
                 // Aqui você pode adicionar a lógica específica para cada tipo de campanha
                 // Por exemplo, enviar mensagem, notificação, etc.
 
+                $campaign = Campaign::where('code', $remarketing->campaign)->first();
+                if (!$campaign) {
+                    $this->error("Campanha não encontrada para o remarketing ID: {$remarketing->id}");
+                    continue;
+                }
+
                 BotTelegram::make($remarketing->bot->token)
                     ->api()
                     ->sendMessage([
                         'chat_id' => $remarketing->member->code,
                         'parse_mode' => 'HTML',
-                        'text' => $remarketing->campaign->description
+                        'text' => $campaign->description
                     ]);
 
 

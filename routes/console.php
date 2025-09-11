@@ -14,8 +14,6 @@ Schedule::command('campaigns:execute')
 Schedule::command('remarketings:execute')
     ->everyMinute();
 
-
-
 // Schedule::command('app:before-time-out-command 3600')
 //     ->everyFiveMinutes();
 
